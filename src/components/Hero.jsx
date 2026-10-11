@@ -146,7 +146,7 @@ export default function Hero() {
               >
                 <Linkedin className="w-3.5 h-3.5 text-[#0a66c2] group-hover:scale-110 transition-transform" />
                 <span>LinkedIn</span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">/muskan-singh</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">/muskan-kumari</span>
               </a>
 
               <a

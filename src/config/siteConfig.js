@@ -50,7 +50,7 @@ export const siteConfig = {
 
   socialLinks: {
     github: "https://github.com/muskan9973m",
-    linkedin: "https://www.linkedin.com/in/muskan-singh-76b798319",
+    linkedin: "https://www.linkedin.com/in/muskan-kumari-76b798319",
     email: "muskansingh9973m@gmail.com",
     contactApiUrl: ""
   },
