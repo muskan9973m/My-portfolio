@@ -130,40 +130,45 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Social Links */}
+            {/* Prominent Social & Contact Pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-8 flex items-center justify-center lg:justify-start gap-4"
+              className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3"
             >
-              <span className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">
-                Connect:
-              </span>
-              <a
-                href={siteConfig.socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-dark-800 border border-slate-200 dark:border-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500"
-                aria-label="Muskan Kumari GitHub Profile"
-              >
-                <Github className="w-4 h-4" />
-              </a>
               <a
                 href={siteConfig.socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-dark-800 border border-slate-200 dark:border-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500"
-                aria-label="Muskan Kumari LinkedIn Profile"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-dark-800/80 hover:bg-violet-50 dark:hover:bg-violet-950/40 hover:text-violet-600 dark:hover:text-violet-400 border border-slate-200 dark:border-white/10 shadow-sm transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-violet-500"
+                aria-label="Muskan Singh LinkedIn Profile"
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-3.5 h-3.5 text-[#0a66c2] group-hover:scale-110 transition-transform" />
+                <span>LinkedIn</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">/muskan-singh</span>
               </a>
+
               <a
                 href={`mailto:${siteConfig.socialLinks.email}`}
-                className="p-2.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-dark-800 border border-slate-200 dark:border-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500"
-                aria-label="Send Email to Muskan Kumari"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-dark-800/80 hover:bg-violet-50 dark:hover:bg-violet-950/40 hover:text-violet-600 dark:hover:text-violet-400 border border-slate-200 dark:border-white/10 shadow-sm transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-violet-500"
+                aria-label="Send Email to muskansingh9973m@gmail.com"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-3.5 h-3.5 text-rose-500 group-hover:scale-110 transition-transform" />
+                <span>Gmail</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">muskansingh9973m@gmail.com</span>
+              </a>
+
+              <a
+                href={siteConfig.socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-dark-800/80 hover:bg-violet-50 dark:hover:bg-violet-950/40 hover:text-violet-600 dark:hover:text-violet-400 border border-slate-200 dark:border-white/10 shadow-sm transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-violet-500"
+                aria-label="Muskan Kumari GitHub Profile"
+              >
+                <Github className="w-3.5 h-3.5 text-slate-900 dark:text-white group-hover:scale-110 transition-transform" />
+                <span>GitHub</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">@muskan9973m</span>
               </a>
             </motion.div>
           </div>

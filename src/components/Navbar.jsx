@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Code2 } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Code2, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ThemeToggle from './ThemeToggle';
+import { Github, Linkedin } from './icons/BrandIcons';
 import { siteConfig } from '../config/siteConfig';
 
 const NAV_ITEMS = [
@@ -132,7 +133,29 @@ export default function Navbar({ theme, toggleTheme }) {
           </div>
 
           {/* Right Action Buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5">
+            <a
+              href={siteConfig.socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:text-[#0a66c2] dark:hover:text-[#0a66c2] hover:bg-slate-100 dark:hover:bg-dark-800 transition-colors"
+              aria-label="Muskan Singh LinkedIn Profile"
+              title="Muskan Singh LinkedIn Profile"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+
+            <a
+              href={siteConfig.socialLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-dark-800 transition-colors"
+              aria-label="Muskan Kumari GitHub Profile"
+              title="Muskan Kumari GitHub Profile"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
 
             <a
@@ -191,7 +214,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 );
               })}
 
-              <div className="pt-3 border-t border-slate-200 dark:border-white/10">
+              <div className="pt-3 border-t border-slate-200 dark:border-white/10 space-y-3">
                 <a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, '#contact')}
@@ -200,6 +223,34 @@ export default function Navbar({ theme, toggleTheme }) {
                   <span>Let's Talk</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
+
+                <div className="flex items-center justify-center gap-4 pt-2">
+                  <a
+                    href={siteConfig.socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-[#0a66c2] bg-slate-100 dark:bg-dark-800 transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={siteConfig.socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-dark-800 transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={`mailto:${siteConfig.socialLinks.email}`}
+                    className="p-2.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-rose-500 bg-slate-100 dark:bg-dark-800 transition-colors"
+                    aria-label="Email"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>
