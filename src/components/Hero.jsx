@@ -196,27 +196,41 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  {/* Center Monogram / Abstract Visual */}
-                  <div className="flex flex-col items-center justify-center my-auto py-4">
+                  {/* Center Profile Photo or Monogram */}
+                  <div className="flex flex-col items-center justify-center my-auto py-2">
                     <div className="relative group">
-                      <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-purple-600 p-[2px] shadow-glow-md">
-                        <div className="w-full h-full rounded-2xl bg-white dark:bg-dark-950 flex flex-col items-center justify-center">
+                      <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-purple-600 p-[2.5px] shadow-glow-md overflow-hidden">
+                        {siteConfig.hero.profileImage ? (
+                          <img
+                            src={siteConfig.hero.profileImage}
+                            alt="Muskan Kumari - Full-Stack Developer"
+                            className="w-full h-full object-cover object-[center_18%] rounded-[14px] group-hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.nextElementSibling.style.display = 'flex';
+                            }}
+                          />
+                        ) : null}
+                        <div
+                          className="w-full h-full rounded-[14px] bg-white dark:bg-dark-950 flex flex-col items-center justify-center"
+                          style={{ display: siteConfig.hero.profileImage ? 'none' : 'flex' }}
+                        >
                           <span className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-violet-500 via-indigo-400 to-purple-400 bg-clip-text text-transparent tracking-tighter">
                             MK
                           </span>
                         </div>
                       </div>
-                      <span className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-500 text-white shadow-sm flex items-center gap-1">
+                      <span className="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-500 text-white shadow-md flex items-center gap-1.5 z-10">
                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                         Available
                       </span>
                     </div>
 
-                    <p className="mt-4 text-base font-bold text-slate-800 dark:text-white">
+                    <p className="mt-3.5 text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                       Muskan Kumari
                     </p>
-                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                      Full-Stack &amp; Frontend
+                    <p className="text-xs font-semibold text-violet-600 dark:text-violet-400">
+                      Full-Stack &amp; Frontend Developer
                     </p>
                   </div>
 

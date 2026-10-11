@@ -19,7 +19,10 @@ export const siteConfig = {
       "Frontend Developer",
       "React.js Developer",
       "Problem Solver"
-    ]
+    ],
+    // Put your photo in the public/ folder (e.g. public/profile.jpg) and set path here:
+    // Set to "/profile.jpg" or "" to keep the MK monogram avatar
+    profileImage: "/profile.jpg"
   },
 
   about: {
