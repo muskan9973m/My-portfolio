@@ -163,7 +163,7 @@ export default function Contact() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-slate-400 dark:text-slate-500">LinkedIn Profile</p>
-                    <p className="text-sm font-semibold truncate">Connect on LinkedIn</p>
+                    <p className="text-sm font-semibold truncate">linkedin.com/in/muskan-singh</p>
                   </div>
                 </a>
               </div>

@@ -50,11 +50,8 @@ export const siteConfig = {
 
   socialLinks: {
     github: "https://github.com/muskan9973m",
-    // Configurable placeholder until real profile URL is provided
-    linkedin: "https://www.linkedin.com/in/muskan-kumari-placeholder",
-    // Configurable placeholder until real email is provided
-    email: "muskan.developer.contact@gmail.com",
-    // Optional contact API endpoint (e.g. Formspree / backend endpoint)
+    linkedin: "https://www.linkedin.com/in/muskan-singh-76b798319",
+    email: "muskansingh9973m@gmail.com",
     contactApiUrl: ""
   },
 
