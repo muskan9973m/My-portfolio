@@ -225,10 +225,6 @@ export default function Hero() {
                           </span>
                         </div>
                       </div>
-                      <span className="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-500 text-white shadow-md flex items-center gap-1.5 z-10">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                        Available
-                      </span>
                     </div>
 
                     <p className="mt-3.5 text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
@@ -255,15 +251,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating decorative mini-badge */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-4 -left-4 px-3.5 py-2 rounded-xl bg-white dark:bg-dark-800 border border-slate-200 dark:border-white/10 shadow-lg text-xs font-semibold text-slate-800 dark:text-white flex items-center gap-2"
-              >
-                <div className="w-2 h-2 rounded-full bg-violet-500" />
-                <span>Clean Code &amp; Solutions</span>
-              </motion.div>
             </motion.div>
           </div>
 

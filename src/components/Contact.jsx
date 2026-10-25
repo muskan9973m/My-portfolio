@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { Github, Linkedin } from './icons/BrandIcons';
-import { motion } from 'motion/react';
 import SectionHeading from './SectionHeading';
 import { siteConfig } from '../config/siteConfig';
+
+const contactApiUrl = import.meta.env.VITE_CONTACT_API_URL?.trim() || '/api/contact';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,19 +23,27 @@ export default function Contact() {
     const errs = {};
     if (!formData.name.trim()) {
       errs.name = 'Please provide your name.';
+    } else if (formData.name.trim().length > 120) {
+      errs.name = 'Your name must be 120 characters or fewer.';
     }
     if (!formData.email.trim()) {
       errs.email = 'Please provide your email address.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       errs.email = 'Please enter a valid email address.';
+    } else if (formData.email.trim().length > 254) {
+      errs.email = 'Your email address must be 254 characters or fewer.';
     }
     if (!formData.subject.trim()) {
       errs.subject = 'Please provide a subject.';
+    } else if (formData.subject.trim().length > 200) {
+      errs.subject = 'Your subject must be 200 characters or fewer.';
     }
     if (!formData.message.trim()) {
       errs.message = 'Please provide a message.';
     } else if (formData.message.trim().length < 10) {
       errs.message = 'Message should be at least 10 characters.';
+    } else if (formData.message.trim().length > 10000) {
+      errs.message = 'Your message must be 10,000 characters or fewer.';
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -57,43 +66,28 @@ export default function Contact() {
     setStatusMessage('');
 
     try {
-      if (siteConfig.socialLinks.contactApiUrl) {
-        // Send to configured endpoint
-        const response = await fetch(siteConfig.socialLinks.contactApiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
+      const response = await fetch(siteConfig.socialLinks.contactApiUrl || contactApiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
 
-        if (!response.ok) {
-          throw new Error('Server responded with an error.');
-        }
-
-        setSubmissionStatus('success');
-        setStatusMessage('Thank you! Your message has been sent successfully.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        // Fallback: Mailto link generation
-        // Simulate a small delay for UX feedback
-        await new Promise((resolve) => setTimeout(resolve, 600));
-
-        const mailtoUrl = `mailto:${siteConfig.socialLinks.email}?subject=${encodeURIComponent(
-          `[Portfolio Contact] ${formData.subject}`
-        )}&body=${encodeURIComponent(
-          `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-        )}`;
-
-        window.location.href = mailtoUrl;
-
-        setSubmissionStatus('success');
-        setStatusMessage(
-          'Your default email client has been opened with your message ready to send.'
-        );
-        setFormData({ name: '', email: '', subject: '', message: '' });
+      if (!response.ok) {
+        throw new Error(result.error || 'We could not submit your message. Please try again.');
       }
-    } catch (err) {
+
+      setSubmissionStatus('success');
+      setStatusMessage('Thank you! Your message has been sent successfully.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
       setSubmissionStatus('error');
-      setStatusMessage('Failed to deliver message. Please reach out directly via email.');
+      setStatusMessage(
+        error.message === 'Contact form is not configured. Please try again later.'
+          ? error.message
+          : 'We could not submit your message. Please try again or email us directly.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -204,6 +198,7 @@ export default function Contact() {
                     type="text"
                     id="name"
                     name="name"
+                    maxLength={120}
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="e.g. Alex Smith"
@@ -222,6 +217,7 @@ export default function Contact() {
                     type="email"
                     id="email"
                     name="email"
+                    maxLength={254}
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="e.g. alex@example.com"
@@ -241,6 +237,7 @@ export default function Contact() {
                   type="text"
                   id="subject"
                   name="subject"
+                  maxLength={200}
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="e.g. Project Inquiry / Opportunity"
@@ -259,6 +256,7 @@ export default function Contact() {
                   id="message"
                   name="message"
                   rows={5}
+                  maxLength={10000}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Share details about your project or inquiry..."
