@@ -30,7 +30,8 @@ A complete, modern, responsive personal portfolio website for **Muskan Kumari**,
   - User preference stored and persisted in `localStorage`.
 - **Contact Form**:
   - Full client-side input validation (Name, Email format, Subject, Message).
-  - Mailto fallback and configurable API endpoint support (`VITE_CONTACT_API_URL`).
+  - Server-side email delivery through the Vercel API route and Resend.
+  - Optional external form endpoint override (`VITE_CONTACT_API_URL`).
   - Accessible feedback states and submit protection.
 - **Accessibility & SEO**:
   - Semantic HTML5 structure (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
@@ -64,13 +65,34 @@ npm -v
 npm install
 ```
 
-### 3. Start Development Server
-```bash
-npm run dev
+### 3. Configure Contact Email Delivery
+The contact form sends submissions to `muskansingh9973m@gmail.com` through the server-side
+`api/contact.js` route. Email delivery needs a Resend account, an API key, and a sender
+address on a domain verified with Resend. Set these server-only variables in a local
+`.env.local` file and in the Vercel project's **Settings → Environment Variables**:
+```env
+RESEND_API_KEY=re_your_resend_api_key
+CONTACT_FROM=Portfolio Contact <contact@your-verified-domain.com>
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Never use a `VITE_` prefix for the API key; that would expose it in the browser. For local
+development, use `vercel dev` so the `/api/contact` function is available, then open the
+local URL it prints. For deployment, add both variables to Vercel and redeploy. The form
+shows an error rather than claiming success if delivery is not configured or the provider
+rejects a message.
 
-### 4. Create Production Build
+An optional `VITE_CONTACT_API_URL` can point to an external form endpoint instead. Configure
+that endpoint to deliver to the inbox above.
+
+### 4. Start Development Server
+Run the Vercel development server to use the contact API locally (install the Vercel CLI
+first if needed with `npm install -g vercel`):
+```bash
+vercel dev
+```
+Open the local URL printed by Vercel. `npm run dev` remains available for frontend-only
+work, but the contact API route requires the Vercel development server.
+
+### 5. Create Production Build
 ```bash
 npm run build
 ```
@@ -125,6 +147,8 @@ my-portfolio/
 ├── public/
 │   ├── favicon.svg          # Custom SVG Brand Favicon
 │   └── resume.pdf           # Downloadable Resume PDF
+├── api/
+│   └── contact.js            # Server-side contact email delivery via Resend
 ├── src/
 │   ├── components/
 │   │   ├── icons/
